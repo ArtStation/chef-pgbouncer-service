@@ -11,6 +11,7 @@ systemd_unit 'pgbouncer.service' do
       ExecStart: '/usr/sbin/pgbouncer /etc/pgbouncer/pgbouncer.ini',
       ExecReload: '/bin/kill -HUP $MAINPID',
       KillSignal: 'SIGINT',
+      Restart: 'always',
     },
     Install: {
       WantedBy: 'multi-user.target',
