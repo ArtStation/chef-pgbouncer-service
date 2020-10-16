@@ -46,7 +46,7 @@ action :add do
       # In order to prevent Chef from running this resource with a halfway filled variables, we need to inhibit it
       # - either if the run has been interrupted (eg CTRL+C), in which case one of the resources execute has no status (nil)
       # - or if any previous resource has failed
-      only_if { run_context.action_collection.select { |action_record| action_record.status.nil? || action_record.status == :failed }.count == 0 }
+      # only_if { run_context.action_collection.select { |action_record| action_record.status.nil? || action_record.status == :failed }.count == 0 }
     end
 
     edit_resource(:template, '/etc/pgbouncer/users.ini') do |new_resource|
@@ -62,7 +62,7 @@ action :add do
       delayed_action :create
       # Only send the notification once
       notifies :reload, 'systemd_unit[pgbouncer.service]' unless run_context.delayed_notification_collection.keys.include?('template[/etc/pgbouncer/users.ini]')
-      only_if { run_context.action_collection.select { |action_record| action_record.status.nil? || action_record.status == :failed }.count == 0 }
+      # only_if { run_context.action_collection.select { |action_record| action_record.status.nil? || action_record.status == :failed }.count == 0 }
     end
   end
 end
