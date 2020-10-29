@@ -9,6 +9,10 @@ default['pgbouncer']['userlist'] = {}
 default['pgbouncer']['os_user']  = 'postgres'
 default['pgbouncer']['os_group'] = 'postgres'
 
+# Administrative settings
+default['pgbouncer']['pidfile'] = '/var/run/postgresql/pgbouncer.pid'
+default['pgbouncer']['logfile'] = '/var/log/postgresql/pgbouncer.log'
+
 # Where to wait for clients
 default['pgbouncer']['listen_addr'] = '127.0.0.1'
 default['pgbouncer']['listen_port'] = 6432
