@@ -12,6 +12,7 @@ systemd_unit 'pgbouncer.service' do
       ExecReload: '/bin/kill -HUP $MAINPID',
       KillSignal: 'SIGINT',
       Restart: 'always',
+      LimitNOFILE: 1048576,
     },
     Install: {
       WantedBy: 'multi-user.target',
